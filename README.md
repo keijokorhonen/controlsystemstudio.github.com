@@ -21,8 +21,8 @@ The website files can be found in `public`.
 
 ## Editing content
 Pages are written in the JSX format, which is similar to HTML, but behaves differently in certain usecases.
-Simple paragraphs and lists can be written in the familiar HTML format, but images are embedded in a different way.
-Images are places inside `src/images` and queried using GraphQL.
+Simple paragraphs and lists can be written in the familiar HTML format, but for example images are embedded in a different way.
+Images are placed inside `src/images` and queried using GraphQL.
     
     opi: file(
         relativePath: { eq: "CS-Studio-OPIs_and_Keyvisual_v03_big.png" }
@@ -33,13 +33,32 @@ Images are places inside `src/images` and queried using GraphQL.
           }
         }
       }
+      
+When running the development server, you can go to [localhost:8000/__graphql](http://localhost:8000/__graphql) to test out GraphQL queries.
 
-This query is included inside of the useStaticQuery hook inside of the main component of the page.
-The image can then be displayed using
+This query is included inside of the useStaticQuery hook inside of the main component of the page like this:
+    
+    // First import the relevant functions and components
+    import { graphql, useStaticQuery } from 'gatsby'
+    import Img from 'gatsby-images'
+    
+    // Then query inside the main component
+    const Component = () => {
+        const images = useStaticQuery(graphql`
+            query {
+                // <- image query here
+            }
+        `)
+        
+        return (
+            // ...
+        )
+    }
+    
+The image can then be displayed using gatsby-images' `Img` component.
 
     <Img
           fluid={images.opi.childImageSharp.fluid}
-          style={{ maxWidth: `80%`, margin: `3rem 0 4rem` }}
     />
 
 For more detail please refer to the [Gatsby documentation](https://www.gatsbyjs.org/docs/working-with-images/).
