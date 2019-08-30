@@ -20,6 +20,7 @@ To run the site on a server, it needs to be built first.
 The website files can be found in `public`.
 
 ## Editing content
+The pages can be found in the folder `src/pages`, whereas resuable parts can be found in `src/components` as React components.
 Pages are written in the JSX format, which is similar to HTML, but behaves differently in certain usecases.
 Simple paragraphs and lists can be written in the familiar HTML format, but for example images are embedded in a different way.
 Images are placed inside `src/images` and queried using GraphQL.
